@@ -1,0 +1,39 @@
+@mixin style-link($color)
+    display: inline-block
+    text-transform: uppercase
+    text-decoration: none
+    color: $color
+
+// Clearfix hack to contain floats
+@mixin clearfix
+    &::after
+        content: ""  // Adds pseudo-element to enable the clearfix
+        display: table  // Makes the container behave like a table to fully encompass floated elements
+        clear: both  //Prevents the container from being adjacent to floated elements on both sides
+
+/* -phone
+    -tab-port
+    -tab-land
+    -big-screen
+    */
+
+@mixin phone
+    @media (max-width: 600px)
+        @content
+
+@mixin respond($breakpoint)
+    @if $breakpoint == phone
+        @media only screen and (max-width: 600px)
+            @content
+
+    @if $breakpoint == tab-port
+        @media only screen and (max-width: 900px)
+            @content
+
+    @if $breakpoint == tab-land
+        @media only screen and (max-width: 1240px)
+            @content
+    
+    @if $breakpoint == big-screen
+        @media only screen and (min-width: 1800px)
+            @content
